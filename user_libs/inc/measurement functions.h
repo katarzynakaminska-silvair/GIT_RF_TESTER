@@ -38,7 +38,7 @@ typedef struct
 extern Current_results Current_results_inst;
 
 void power_measurement(Current_results* Current_results_struct, uint8_t is_measurement_fast);
-void frequency_measurement();
+void frequency_measurement(Current_results* Current_results_struct);
 void set_attenuation(Current_results* Current_results_struct, float max_power);
 inline void set_warm_up_state(uint8_t is_warmed_up);
 

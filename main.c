@@ -41,7 +41,7 @@
 #include "LED.h"
 #include "FLASH.h"
 #include "SN74LV.h"
-#include "RF3021.h"
+#include "HMC849.h"
 #include "TIM.h"
 
 //static uint8_t firmware_version[3] = {1,1,1}; //major, minor, release
@@ -108,9 +108,10 @@ int main(void)
 	ADC_set_ST_values(&ADC_ST_values_inst);
 	SN74LV_init();
 	RF3021_init();
-	set_attenuation(&Current_results_inst, 15);
+	//set_attenuation(&Current_results_inst, 15);
+	HMC624_set_attenuation(10);
 	TIM_warm_up();
-
+	HMC849_init();
 //	float *float_pointer;
 //	double *double_pointer;
 

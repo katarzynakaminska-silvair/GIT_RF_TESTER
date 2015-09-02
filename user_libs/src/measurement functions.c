@@ -2,7 +2,7 @@
 #include "LED.h"
 #include "FLASH.h"
 #include "SN74LV.h"
-#include "RF3021.h"
+#include "HMC849.h"
 #include "HMC624.h"
 #include "LED.h"
 #include "TIM.h"
@@ -26,7 +26,7 @@ void power_measurement(Current_results* Current_results_struct, uint8_t is_measu
 {
 
 	Current_result_clear(Current_results_struct);
-	RF3021_set_mode(RF3021_POWER);
+	HMC849_set_mode(HMC849_POWER);
 	if(Cali_reglin_inst.is_clibrated !=1)Current_results_struct->current_error_log_1 |= ERROR_CALIBRATION;
 	if(!Current_results_struct->current_is_warmed_up)Current_results_struct->current_error_log_1 |= ERROR_WARM_UP;
 	if(!Cali_reglin_inst.is_serialnum_set)Current_results_struct->current_error_log_1 |= ERROR_SERIAL_NUM;
@@ -35,6 +35,7 @@ void power_measurement(Current_results* Current_results_struct, uint8_t is_measu
 	ADC_reference_V_measurement(Current_results_struct, &ADC_ST_values_inst);
 	ADC_measurement(Current_results_struct);
 	power_count(Current_results_struct, &Cali_reglin_inst, is_measurement_fast);
+	HMC849_disable();
 	if(Current_results_struct->current_error_log_1)LED_on(LED_RED);
 
 }
@@ -44,9 +45,11 @@ void frequency_measurement(Current_results* Current_results_struct)
 	uint32_t cnt5 = 0; // TIM5 counter value
 	double tim5_f = 84000000; //TIM5 clock frequency
 	uint32_t tim2_cycle_num = 1200000; //number of measurement cycles
+	uint32_t temp_cycle_num = 0;
+	uint32_t 	cnt5_temp = 0;
 
 	Current_result_clear(&Current_results_inst);
-	RF3021_set_mode(RF3021_FREQUENCY);
+	HMC849_set_mode(HMC849_FREQUENCY);
 	SN74LV_set_mode(SN74LV_REACT_ON_CLOCK);
 
 	if(Cali_reglin_inst.is_clibrated !=1)Current_results_struct->current_error_log_1 |= ERROR_CALIBRATION;
@@ -58,7 +61,11 @@ void frequency_measurement(Current_results* Current_results_struct)
 	 __disable_irq();
 	TIM2_init();
 
-	while(TIM2->CNT < tim2_cycle_num);
+	while(TIM2->CNT < tim2_cycle_num)
+		{
+			temp_cycle_num = TIM2->CNT;
+			cnt5_temp = TIM5->CNT;
+		}
 
 	cnt5 = TIM5->CNT;
 	 __enable_irq();
@@ -72,6 +79,7 @@ void frequency_measurement(Current_results* Current_results_struct)
 	TIM_DeInit(TIM2);
 	TIM_DeInit(TIM5);
 
+	HMC849_disable();
 	if(Current_results_struct->current_error_log_1)LED_on(LED_RED);
 
 }
@@ -85,7 +93,7 @@ void set_attenuation_auto()
 	uint16_t ADC_value = 0;
 
 
-	RF3021_set_mode(RF3021_POWER);
+	HMC849_set_mode(HMC849_POWER);
 	HMC624_set_attenuation(31.5f);
 	temp_attenuation = 31.5f;
 
@@ -116,7 +124,7 @@ void set_attenuation_auto()
 
 	}
 
-
+//	HMC849_disable();
 	Current_results_inst.current_attenuation_fastcali = temp_attenuation;
 	//jeli za du¿a moc to zostawia 31,5
 

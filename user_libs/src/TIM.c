@@ -66,7 +66,7 @@ void TIM2_init(void)
 	RCC->APB1ENR |= 0x08; // Clock for Timer5
 
 	GPIOA->MODER |= 0x00000008; // all inputs but: PA1 => AF mode
-	GPIOA->AFR[0] |= 0x00000010; // select AF1 (TIM2) for PA01 -> TIM2_CH2
+	GPIOA->AFR[0] |= 0x00000010; // select AF1 (TIM2) for PA1 -> TIM2_CH2
 
 
 	TIM2->CCMR1 |= 0x0100; // Ch. 2 as TI2 //CC2S = 01

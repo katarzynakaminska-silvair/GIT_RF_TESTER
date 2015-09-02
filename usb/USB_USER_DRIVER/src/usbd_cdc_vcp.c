@@ -446,7 +446,6 @@ static uint16_t VCP_DataRx (uint8_t* Buf, uint32_t Len)
 		  {
 			case POWER_MEASUREMENT:
 
-
 				HMC624_set_attenuation(Current_results_inst.current_attenuation);
 				power_measurement(&Current_results_inst, 0);
 				clear_buf(buf,26);
@@ -532,8 +531,6 @@ static uint16_t VCP_DataRx (uint8_t* Buf, uint32_t Len)
 			break;
 
 			case REGLINP_SET:
-
-
 				tempf_ptr = Buf + 1;
 				Cali_reglin_inst.reglin_a = *tempf_ptr;
 				tempf_ptr = Buf + 5;
@@ -608,7 +605,7 @@ static uint16_t VCP_DataRx (uint8_t* Buf, uint32_t Len)
 
 
 				Current_result_clear(&Current_results_inst);
-				RF3021_set_mode(RF3021_POWER);
+				HMC849_set_mode(HMC849_POWER);
 				if(Cali_reglin_inst.is_clibrated !=1)Current_results_inst.current_error_log_1 |= ERROR_CALIBRATION;
 				if(!Current_results_inst.current_is_warmed_up)Current_results_inst.current_error_log_1 |= ERROR_WARM_UP;
 				if(!Cali_reglin_inst.is_serialnum_set)Current_results_inst.current_error_log_1 |= ERROR_SERIAL_NUM;
@@ -643,6 +640,7 @@ static uint16_t VCP_DataRx (uint8_t* Buf, uint32_t Len)
 			               buf,
 			               19);
 
+			    HMC849_disable();
 				if(Current_results_inst.current_error_log_1)LED_on(LED_RED);
 //				USB_Rx_Cnt = 0;
 			break;

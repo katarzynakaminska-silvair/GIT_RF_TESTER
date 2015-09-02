@@ -40,7 +40,7 @@
           <Memory name="IROM2" type="ReadOnly" size="" startValue=""/>
           <Memory name="IRAM2" type="ReadWrite" size="" startValue=""/>
         </MemoryAreas>
-        <LocateLinkFile path="../../../../../coocox/coide/configuration/programdata/rf_tester/arm-gcc-link.ld" type="0"/>
+        <LocateLinkFile path="../../../../../../../coocox/coide/configuration/programdata/rf_tester/arm-gcc-link.ld" type="0"/>
       </Link>
       <Output>
         <Option name="OutputFileType" value="0"/>
@@ -92,8 +92,8 @@
     <File name="usb/USB_CORE_Driver/inc" path="" type="2"/>
     <File name="cmsis_lib/include/stm32f4xx_usart.h" path="cmsis_lib/include/stm32f4xx_usart.h" type="1"/>
     <File name="usb/USB_CORE_Driver/src/usbd_req.c" path="usb/USB_CORE_Driver/src/usbd_req.c" type="1"/>
-    <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
     <File name="cmsis_boot/stm32f4xx.h" path="cmsis_boot/stm32f4xx.h" type="1"/>
+    <File name="cmsis/core_cm4_simd.h" path="cmsis/core_cm4_simd.h" type="1"/>
     <File name="usb/USB_CDC_Driver" path="" type="2"/>
     <File name="cmsis_lib/source/stm32f4xx_spi.c" path="cmsis_lib/source/stm32f4xx_spi.c" type="1"/>
     <File name="cmsis/core_cmFunc.h" path="cmsis/core_cmFunc.h" type="1"/>
@@ -148,14 +148,15 @@
     <File name="usb/USB_USER_DRIVER/src/usb_bsp.c" path="usb/USB_USER_DRIVER/src/usb_bsp.c" type="1"/>
     <File name="usb/USB_OTG_Driver/src/usb_otg.c" path="usb/USB_OTG_Driver/src/usb_otg.c" type="1"/>
     <File name="usb/USB_USER_DRIVER/inc/usbd_conf.h" path="usb/USB_USER_DRIVER/inc/usbd_conf.h" type="1"/>
-    <File name="usb/USB_CORE_Driver/inc/usbd_core.h" path="usb/USB_CORE_Driver/inc/usbd_core.h" type="1"/>
     <File name="usb/USB_CORE_Driver/inc/usbd_usr.h" path="usb/USB_CORE_Driver/inc/usbd_usr.h" type="1"/>
+    <File name="usb/USB_CORE_Driver/inc/usbd_core.h" path="usb/USB_CORE_Driver/inc/usbd_core.h" type="1"/>
     <File name="cmsis_boot/startup" path="" type="2"/>
     <File name="cmsis_lib/source/stm32f4xx_flash.c" path="cmsis_lib/source/stm32f4xx_flash.c" type="1"/>
     <File name="usb/USB_OTG_Driver/inc/usb_dcd_int.h" path="usb/USB_OTG_Driver/inc/usb_dcd_int.h" type="1"/>
     <File name="cmsis_lib/syscalls" path="" type="2"/>
     <File name="cmsis/core_cm4.h" path="cmsis/core_cm4.h" type="1"/>
     <File name="usb/USB_OTG_Driver/src/usb_dcd.c" path="usb/USB_OTG_Driver/src/usb_dcd.c" type="1"/>
+    <File name="user_libs/inc/HMC849.h" path="user_libs/inc/HMC849.h" type="1"/>
     <File name="user_libs/inc/LED.h" path="user_libs/inc/LED.h" type="1"/>
     <File name="usb/USB_CDC_Driver/src/usbd_cdc_core.c" path="usb/USB_CDC_Driver/src/usbd_cdc_core.c" type="1"/>
     <File name="cmsis_lib/source/misc.c" path="cmsis_lib/source/misc.c" type="1"/>
@@ -167,8 +168,9 @@
     <File name="usb/USB_OTG_Driver/inc/usb_hcd.h" path="usb/USB_OTG_Driver/inc/usb_hcd.h" type="1"/>
     <File name="usb/USB_OTG_Driver/inc/usb_core.h" path="usb/USB_OTG_Driver/inc/usb_core.h" type="1"/>
     <File name="cmsis_boot/stm32f4xx_conf.h" path="cmsis_boot/stm32f4xx_conf.h" type="1"/>
-    <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
     <File name="usb/USB_CORE_Driver" path="" type="2"/>
+    <File name="cmsis_boot/system_stm32f4xx.h" path="cmsis_boot/system_stm32f4xx.h" type="1"/>
+    <File name="user_libs/src/HMC849.c" path="user_libs/src/HMC849.c" type="1"/>
     <File name="user_libs/src/FLASH.c" path="user_libs/src/FLASH.c" type="1"/>
     <File name="user_libs/src/LED.c" path="user_libs/src/LED.c" type="1"/>
     <File name="usb/USB_OTG_Driver" path="" type="2"/>
